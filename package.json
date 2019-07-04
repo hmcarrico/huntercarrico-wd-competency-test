@@ -2,6 +2,7 @@
   "name": "huntercarrico-wd-competency-test",
   "version": "0.1.0",
   "main": "server/",
+  "proxy": "http://localhost:4000",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
