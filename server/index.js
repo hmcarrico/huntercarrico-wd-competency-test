@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const aticleContorller = require('./controllers/articleController');
-const vanillaController = require('./controllers/vanillaController');
+const authController = require('./controllers/authController');
 const app = express();
 const init = require('./controllers/init.js')
 
@@ -23,11 +23,9 @@ app.put('/api/articles/:id', aticleContorller.updateArticle);
 // Session
 app.get('/auth/session', (req,res) => res.status(200).send(req.session.user))
 
-// Auth - Vanilla
-app.post('/auth/registerVanilla', vanillaController.registerUser);
-app.post('/auth/loginVanilla', vanillaController.loginUser);
-
-// Auth - Editor
+// Auth - Vanilla/Editor
+app.post('/auth/register', authController.registerUser);
+app.post('/auth/login', authController.loginUser);
 
 // Auth - Admin
 

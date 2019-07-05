@@ -12,7 +12,6 @@ class Browse extends Component {
 
     componentDidMount(){
         axios.get('/api/articles').then(res => {
-            console.log(res.data);
             this.setState({
                 articles: res.data
             })

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { updateUser } from '../../ducks/reducer';
 import axios from 'axios';
 
 class Register extends Component {
@@ -26,15 +28,15 @@ class Register extends Component {
         } else if(!role) {
             alert('please choose a role')
         } else {
-            axios.post('/auth/registerVanilla', {email, username, password, role}).then(res => {
+            axios.post('/auth/register', {email, username, password, role}).then(res => {
                 alert(res.data)
+                this.props.updateUser(res.data.user)
                 this.props.history.push('/browse')
             })
         }
     }
 
     render(){
-        console.log(this.state)
         return (
             <div>
                 <h1>Register</h1>
@@ -54,4 +56,14 @@ class Register extends Component {
     }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchtoProps = {
+    updateUser
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps)(Register);

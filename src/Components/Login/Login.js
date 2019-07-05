@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { updateUser } from '../../ducks/reducer';
 import axios from 'axios';
 
 class Login extends Component {
@@ -11,7 +13,6 @@ class Login extends Component {
     }
 
     handleInputs = (e) => {
-        console.log('hello')
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -19,18 +20,18 @@ class Login extends Component {
 
     login = () => {
         const { email, password } = this.state;
-        axios.post('/auth/loginVanilla', {email, password}).then(res => {
+        axios.post('/auth/login', {email, password}).then(res => {
             if(res.data.message){
                 alert(res.data.message)
             } else {
                 console.log('logged In', res);
+                this.props.updateUser(res.data)
                 this.props.history.push('/browse')
             }
         })
     }
 
     render(){
-        console.log(this.state)
         return (
             <div>
                 <h1>Login</h1>
@@ -43,4 +44,15 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchtoProps = {
+    updateUser
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps)(Login);

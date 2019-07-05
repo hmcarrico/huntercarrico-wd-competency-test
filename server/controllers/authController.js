@@ -24,14 +24,14 @@ module.exports = {
             if (user[0]) {
             bcrypt.compare(password, user[0].password).then(passwordsMatch => {
                 if (passwordsMatch) {
-                req.session.user = { username: user[0].username, email: user[0].email, role: user[0].role };
-                res.status(200).send( req.session.user );
+                    req.session.user = { username: user[0].username, email: user[0].email, role: user[0].role };
+                    res.status(200).send( req.session.user );
                 } else {
-                res.status(200).json({ message: 'Wrong email or password' })
+                    res.status(200).json({ message: 'Wrong email or password' })
                 }
             })
                 } else {
-                res.status(200).json({ message: "Email does not exist" })
+                    res.status(200).json({ message: "Email does not exist" })
                 }
             });
         },
