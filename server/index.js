@@ -21,11 +21,11 @@ app.delete('/api/articles/:id', aticleContorller.deleteArticle);
 app.put('/api/articles/:id', aticleContorller.updateArticle);
 
 // Auth - Vanilla
-app.post('/api/registerVanilla', vanillaController.registerUser);
-app.post('/api/loginVanilla', vanillaController.loginUser);
+app.post('/auth/registerVanilla', vanillaController.registerUser);
+app.post('/auth/loginVanilla', vanillaController.loginUser);
 
 // Auth - Editor
 
 // Auth - Admin
 
-app.listen(4000, () => console.log('Listening on port 3000'));
+app.listen(4000, () => console.log('Listening on port 4000'));

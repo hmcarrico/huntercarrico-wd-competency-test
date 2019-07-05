@@ -11,7 +11,6 @@ module.exports = {
                 if(err){
                     console.log(err)
                 } else {
-                    res.send(item)
                     req.session.user = { username, email, role };
                     res.send({ user: req.session.user })
                 }
