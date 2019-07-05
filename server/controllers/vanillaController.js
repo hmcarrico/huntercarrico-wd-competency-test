@@ -23,7 +23,6 @@ module.exports = {
         db.all('SELECT * FROM users WHERE email = ? LIMIT 1', [email], (err, user) => {
             if (user[0]) {
             bcrypt.compare(password, user[0].password).then(passwordsMatch => {
-                console.log('hehe', user)
                 if (passwordsMatch) {
                 req.session.user = { username: user[0].username, email: user[0].email, role: user[0].role };
                 res.status(200).send( req.session.user );

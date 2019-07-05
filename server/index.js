@@ -20,6 +20,9 @@ app.post('/api/articles', aticleContorller.createArticle);
 app.delete('/api/articles/:id', aticleContorller.deleteArticle);
 app.put('/api/articles/:id', aticleContorller.updateArticle);
 
+// Session
+app.get('/auth/session', (req,res) => res.status(200).send(req.session.user))
+
 // Auth - Vanilla
 app.post('/auth/registerVanilla', vanillaController.registerUser);
 app.post('/auth/loginVanilla', vanillaController.loginUser);
