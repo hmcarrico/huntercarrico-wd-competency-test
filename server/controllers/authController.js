@@ -10,6 +10,7 @@ module.exports = {
             db.run('INSERT INTO users (username, email, password, role) values (?,?,?,?)',[username, email, hash, role], (err, item) => {
                 if(err){
                     console.log(err)
+                    res.status(500).json({message: "An error occured during sign up"})
                 } else {
                     req.session.user = { username, email, role };
                     res.send({ user: req.session.user })

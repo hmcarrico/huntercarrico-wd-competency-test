@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { updateUser } from '../../ducks/reducer';
 import axios from 'axios';
@@ -18,6 +19,7 @@ class Header extends Component {
         return (
             <div>
                 Header
+                <Link to='/create'><button>Create Artilce</button></Link>
             </div>
         )
     }
