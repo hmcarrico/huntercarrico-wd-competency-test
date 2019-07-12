@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 function Article(props){
-    console.log(props)
     return <div>
         {props.article.title}
-        {props.content}
+        {props.article.content}
+        <Link to={`/article/${props.article.article_id}`}><button>View Article</button></Link>
     </div>
 }
 

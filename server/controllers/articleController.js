@@ -8,10 +8,19 @@ module.exports = {
             });
         db.close();
     },
-    createArticle: (req, res) => {
-        const { title, content, category, user_id } = req.body;
+    getSingleArticles: (req, res) => {
+        const { id } = req.params;
         let db = new sqlite3.Database("./database.sqlite3")
-            db.run('INSERT INTO articles (title, content, category, user_id) VALUES (?,?,?,?)', [title, content, category, user_id], () => {
+            db.all("SELECT * FROM articles where article_id = ?", [id], (err, articles) => {
+                res.status(200).send(articles)
+            });
+        db.close();
+    },
+    createArticle: (req, res) => {
+        console.log(req.body)
+        const { title, content, category, image,  user_id } = req.body;
+        let db = new sqlite3.Database("./database.sqlite3")
+            db.run('INSERT INTO articles (title, content, category, image, user_id) VALUES (?,?,?,?,?)', [title, content, category, image, user_id], () => {
                 db.all("SELECT * FROM articles", (err, articles) => {
                     res.status(200).send(articles)
                 });
@@ -29,11 +38,11 @@ module.exports = {
         db.close();
     },
     updateArticle: (req, res) => {
-        const { updatedTitle, updatedContent, updatedCategory } = req.body;
+        const { updatedTitle, updatedContent, updatedImage } = req.body;
         const { id } = req.params;
         let db = new sqlite3.Database("./database.sqlite3");
-            db.run(`UPDATE articles SET title = ?, content = ?, category = ? WHERE user_id = ?`, [updatedTitle, updatedContent, updatedCategory, id], (err) => {
-                db.all("SELECT * FROM articles", (err, articles) => {
+            db.run(`UPDATE articles SET title = ?, content = ?, image = ? WHERE article_id = ?`, [updatedTitle, updatedContent, updatedImage, id], (err) => {
+                db.all("SELECT * FROM articles WHERE article_id = ?", [id], (err, articles) => {
                     res.status(200).send(articles)
                 });
             });

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import axios from 'axios';
 
 class CreateArticle extends Component {
     constructor(){
@@ -6,6 +8,7 @@ class CreateArticle extends Component {
         this.state = {
             title: '',
             content: '',
+            category: '',
             image: ''
         }
     }
@@ -16,8 +19,20 @@ class CreateArticle extends Component {
         })
     }
 
+    submitArticle = () => {
+        const { title, content, category, image } = this.state;
+        const { user_id } = this.props.user;
+        axios.post('/api/articles', {title, content, category, image, user_id}).then(res => {
+            this.props.history.push('/')
+        })
+    }
+
     render(){
-        console.log(this.state)
+        const { title, content, image } = this.state;
+        const style = {
+            maxHeight: '200px',
+            maxWidth: '200px'
+        }
         return (
             <div>
                 <div>
@@ -25,16 +40,42 @@ class CreateArticle extends Component {
                     <input name='title' onChange={(e) => this.handleInputs(e)}/>
                 </div>
                 <div>
-                    <h3>Content: </h3>    
-                    <textarea cols={50} rows={15} wrap={true} name='content' onChange={(e) => this.handleInputs(e)}/>
+                    <h3>Category: </h3>
+                    <select onChange={(e) => this.setState({category: e.target.value})}>
+                        <option selected disabled>Choose Category</option>
+                        <option>politics</option>
+                        <option>entertainment</option>
+                        <option>sports</option>
+                    </select>
                 </div>
                 <div>
-                    <h3>Cover Image: </h3>    
+                    <h3>Supporting Image: </h3>    
                     <input name='image' onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <h3>Content: </h3>    
+                    <textarea cols={50} rows={15} name='content' onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <h1>Preview:</h1>    
+                    <div>
+                        <h2>{title}</h2>
+                        <img style={style} src={image} />
+                        <p>{content}</p>
+                    </div>
+                </div>
+                <div>
+                    <button onClick={() => this.submitArticle()}>Submit</button>
                 </div>
             </div>
         )
     }
 }
 
-export default CreateArticle;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(CreateArticle);

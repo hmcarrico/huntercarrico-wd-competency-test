@@ -16,6 +16,7 @@ app.use(session({
 
 // Article Endpoints
 app.get('/api/articles', aticleContorller.getAllArticles);
+app.get('/api/singleArticle/:id', aticleContorller.getSingleArticles);
 app.post('/api/articles', aticleContorller.createArticle);
 app.delete('/api/articles/:id', aticleContorller.deleteArticle);
 app.put('/api/articles/:id', aticleContorller.updateArticle);

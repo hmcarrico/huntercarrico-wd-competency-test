@@ -18,8 +18,8 @@ class Header extends Component {
     render(){
         return (
             <div>
-                Header
-                <Link to='/create'><button>Create Artilce</button></Link>
+                <Link to='/'><button>Home</button></Link>
+                <Link to='/create'><button>Create Article</button></Link>
             </div>
         )
     }
