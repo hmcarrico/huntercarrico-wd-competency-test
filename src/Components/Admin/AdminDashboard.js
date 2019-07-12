@@ -47,7 +47,6 @@ class AdminDashboard extends Component{
 
     render(){
         const {users, newRole} = this.state;
-        console.log(newRole)
         const displayeUsers = users.map(user => {
             return <div>
                 <DisplayUser user={user} newRole={newRole} updateNewRole={this.handleSelect} deleteUser={this.deleteUser} updateUser={this.editUserRole}/>

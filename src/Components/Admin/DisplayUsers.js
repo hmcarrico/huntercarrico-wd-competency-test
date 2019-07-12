@@ -13,7 +13,7 @@ function DisplayUser(props){
             <h2>{username}</h2>
             <b>{email}</b>
             <select onChange={(e) => props.updateNewRole(e)}>
-                <option value={role}>{role}</option>
+                <option disabled value={role}>{role}</option>
                 <option value={role === 'admin' ? 'reader' : 'admin'}>{role === 'admin' ? 'reader' : 'admin'}</option>
                 <option value={role === 'reader' ? 'editor' : 'admin'}>{role === 'reader' ? 'reader' : 'editor'}</option>
             </select>

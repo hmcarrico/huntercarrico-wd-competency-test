@@ -8,6 +8,14 @@ module.exports = {
             });
         db.close();
     },
+    articleType: (req, res) => {
+        const {category} = req.query;
+        let db = new sqlite3.Database("./database.sqlite3")
+        db.all("SELECT * FROM articles WHERE category = ?", [category], (err, articles) => {
+            res.status(200).send(articles)
+        });
+    db.close(); 
+    },
     getSingleArticles: (req, res) => {
         const { id } = req.params;
         let db = new sqlite3.Database("./database.sqlite3")

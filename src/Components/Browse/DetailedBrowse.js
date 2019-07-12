@@ -3,7 +3,7 @@ import Article from './Article';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-class Browse extends Component {
+class DetailedBrowse extends Component {
     constructor(){
         super();
         this.state = {
@@ -22,15 +22,6 @@ class Browse extends Component {
                 res.data.forEach(article => {
                     article.category === "entertainment" ? entertainment.push(article): article.category === "politics" ? politics.push(article) : article.category === "sports" ? sports.push(article) : console.log('none')
                 })
-                if(entertainment.length > 3){
-                    entertainment.splice(2, entertainment.length - 3)
-                }
-                if(politics.length > 3){
-                    politics.splice(2, politics.length - 3)
-                }
-                if(sports.length > 3){
-                    sports.splice(2, sports.length - 3)
-                }
                 this.setState({
                     entertainment: entertainment,
                     politics: politics,
@@ -65,4 +56,4 @@ class Browse extends Component {
     }
 }
 
-export default Browse;
+export default DetailedBrowse;
