@@ -7,6 +7,7 @@ import Browse from './Components/Browse/Browse';
 import Login from './Components/Login/Login';
 import CreateArticle from './Components/CreateArticle/CreateArticle';
 import SingleArticle from './Components/Browse/SingleArticle';
+import Admin from './Components/Admin/AdminDashboard';
 
 export default <Switch>
     <Route exact path='/' component={Home} />
@@ -15,4 +16,5 @@ export default <Switch>
     <Route path='/browse' component={Browse} />
     <Route path='/create' component={CreateArticle} />
     <Route path='/article/:id' component={SingleArticle} />
+    <Route path='/admin' component={Admin} />
 </Switch>

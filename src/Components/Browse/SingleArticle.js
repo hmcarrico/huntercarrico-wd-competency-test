@@ -35,6 +35,13 @@ class SingleArticle extends Component{
         })
     }
 
+    deleteArticle = () => {
+        const id = this.props.match.params.id;
+        axios.delete(`/api/articles/${id}`).then(() => {
+            this.props.history.push('/browse')
+        })
+    }
+
     render(){
         const style = {
             'maxWidth': '200px',
@@ -53,6 +60,7 @@ class SingleArticle extends Component{
             Photo: <input name='photo' onChange={(e) => this.handleInputs(e)}/>
             Content: <input name='content' onChange={(e) => this.handleInputs(e)}/>
             <button onClick={() => this.updateArticle()}>Submit</button>
+            <button style={{background: 'red'}} onClick={() => this.deleteArticle()}>Delete Article</button>
         </div>
     }
 }

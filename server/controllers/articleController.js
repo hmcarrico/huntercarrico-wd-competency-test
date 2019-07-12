@@ -30,7 +30,7 @@ module.exports = {
     deleteArticle: (req, res) => {
         const { id } = req.params;
         let db = new sqlite3.Database("./database.sqlite3")
-            db.run(`DELETE FROM articles WHERE id = ?`, [id], () => {
+            db.run(`DELETE FROM articles WHERE article_id = ?`, [id], () => {
                 db.all("SELECT * FROM articles", (err, articles) => {
                     res.status(200).send(articles)
                 });

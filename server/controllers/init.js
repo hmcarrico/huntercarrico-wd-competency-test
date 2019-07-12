@@ -15,12 +15,19 @@ initDB: (req, res) => {
             console.log("creating table articles -----");
             db.run('CREATE TABLE IF NOT EXISTS articles(article_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, category TEXT, image TEXT, user_id INTEGER)',  insertArticleData);
 
-            db.run("CREATE TABLE IF NOT EXISTS users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, role TEXT)",  insertUserData);
+            db.run("CREATE TABLE IF NOT EXISTS users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, role TEXT, photo TEXT)",  insertUserData);
         }
 
         const insertUserData = () => {
             console.log("inserting data for users -----")
-            db.run('INSERT INTO users (email, username, password, role) VALUES (?,?,?,?)', ["hunter@gmail.com", "huntercarrico", "password", "admin"])
+            db.run('INSERT INTO users (email, username, password, role, photo) VALUES (?,?,?,?,?)', ["hunter@gmail.com", "huntercarrico", "password", "admin", 'https://vignette.wikia.nocookie.net/phoenixcraft/images/4/4c/Name-tag-admin-1000.png/revision/latest?cb=20130711003702'])
+
+            db.run('INSERT INTO users (email, username, password, role, photo) VALUES (?,?,?,?,?)', ["hunter@gmail.com", "huntercarrico", "password", "admin", 'https://vignette.wikia.nocookie.net/phoenixcraft/images/4/4c/Name-tag-admin-1000.png/revision/latest?cb=20130711003702'])
+
+            db.run('INSERT INTO users (email, username, password, role, photo) VALUES (?,?,?,?,?)', ["hunter@gmail.com", "huntercarrico", "password", "admin", 'https://vignette.wikia.nocookie.net/phoenixcraft/images/4/4c/Name-tag-admin-1000.png/revision/latest?cb=20130711003702'])
+
+
+            db.run('INSERT INTO users (email, username, password, role, photo) VALUES (?,?,?,?,?)', ["hunter@gmail.com", "huntercarrico", "password", "admin", 'https://vignette.wikia.nocookie.net/phoenixcraft/images/4/4c/Name-tag-admin-1000.png/revision/latest?cb=20130711003702'])
         }
 
         const insertArticleData = () =>{
