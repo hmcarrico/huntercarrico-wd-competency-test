@@ -6,7 +6,8 @@ class AdminDashboard extends Component{
     constructor(){
         super();
         this.state = {
-            users: []
+            users: [],
+            newRole: null
         }
     }
 
@@ -27,11 +28,29 @@ class AdminDashboard extends Component{
         })
     }
 
+    editUserRole = (role, id) => {
+        console.log(role)
+        axios.put(`/api/user/${id}?role=${role}`).then(res => {
+            console.log('ressss', res)
+            this.setState({
+                users: res.data
+            })
+            
+        })
+    }
+
+    handleSelect = (e) => {
+        this.setState({
+            newRole: e.target.value
+        })
+    }
+
     render(){
-        const {users} = this.state;
+        const {users, newRole} = this.state;
+        console.log(newRole)
         const displayeUsers = users.map(user => {
             return <div>
-                <DisplayUser user={user} deleteUser={this.deleteUser}/>
+                <DisplayUser user={user} newRole={newRole} updateNewRole={this.handleSelect} deleteUser={this.deleteUser} updateUser={this.editUserRole}/>
             </div>
         })
         return (

@@ -44,7 +44,7 @@ class Register extends Component {
                 Username: <input name="username" onChange={(e) => this.handleInputs(e)}/> <br />
                 <select onChange={(e) => this.setState({role: e.target.value})}>
                     <option selected disabled>Choose Role</option>
-                    <option value="vanilla">Reader</option>
+                    <option value="reader">Reader</option>
                     <option value="editor">Author</option>
                 </select> <br />
                 Password: <input type="password" name="password" onChange={(e) => this.handleInputs(e)}/><br />

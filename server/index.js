@@ -38,6 +38,7 @@ app.post('/auth/login', authController.loginUser);
 
 // Auth - Admin
 app.get('/api/allUsers', adminContoller.getAllUsers);
+app.put('/api/user/:id', adminContoller.updateUser);
 app.delete('/api/user/:id', adminContoller.deleteUser);
 
 app.listen(4000, () => console.log('Listening on port 4000'));

@@ -18,7 +18,6 @@ class Browse extends Component {
                 let entertainment = [];
                 let politics = [];
                 let sports = [];
-                console.log(res)
                 res.data.forEach(article => {
                     article.category === "entertainment" ? entertainment.push(article): article.category === "politics" ? politics.push(article) : article.category === "sports" ? sports.push(article) : console.log('none')
                 })
