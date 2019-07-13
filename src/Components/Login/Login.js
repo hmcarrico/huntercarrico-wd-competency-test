@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { updateUser } from '../../ducks/reducer';
 import axios from 'axios';
+import './Login.scss';
 
 class Login extends Component {
     constructor(){
@@ -33,12 +34,29 @@ class Login extends Component {
 
     render(){
         return (
-            <div>
-                <h1>Login</h1>
-                Email: <input name="email" onChange={(e) => this.handleInputs(e)}/>
-                Password: <input type="password" name="password" onChange={(e) => this.handleInputs(e)}/>
-                <hr />
-                <button onClick={this.login}>Login</button>
+            <div className='login'>
+                <div>
+                    <h1>
+                        Login
+                    </h1>
+                </div>
+                <div>
+                    <h3>
+                        Email:
+                    </h3>
+                    <input name="email" onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <h3>
+                        Password:
+                    </h3>
+                    <input type="password" name="password" onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <button onClick={this.login}>
+                        Login
+                    </button>
+                </div>
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Article from './Article';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux'
 import axios from 'axios';
 
 class DetailedBrowse extends Component {
@@ -33,6 +34,7 @@ class DetailedBrowse extends Component {
 
     render(){
         const { entertainment, politics, sports } = this.state;
+        const { user } = this.props;
         const entertainmentMap = entertainment.map(article => {
             return <Article article={article}/>
         })
@@ -44,16 +46,30 @@ class DetailedBrowse extends Component {
         })
         return (
             <div>
-                BROWSE ARTICLES
-                <Link to='/browse/entertainment'><h1>Entertainment</h1></Link>
-                {entertainmentMap}
-                <Link to='/browse/politics'><h1>Politics</h1></Link>
-                {politicsMap}
-                <Link to='/browse/sports'><h1>Sports</h1></Link>
-                {sportsMap}
+                { user ?
+                    <div>
+                        BROWSE ARTICLES
+                        <Link to='/browse/entertainment'><h1>Entertainment</h1></Link>
+                        {entertainmentMap}
+                        <Link to='/browse/politics'><h1>Politics</h1></Link>
+                        {politicsMap}
+                        <Link to='/browse/sports'><h1>Sports</h1></Link>
+                        {sportsMap}
+                    </div>
+                :
+                    <div>
+                        {this.props.history.push('/')}
+                    </div>
+                }
             </div>
         )
     }
 }
 
-export default DetailedBrowse;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(DetailedBrowse);

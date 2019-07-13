@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Sigmar+One&display=swap');
+
+.home{
+    margin-top: 60px;
+    height: 1000px;
+    background: black;
+    position: fixed;
+    &__links {
+        font-family: 'Sigmar One', cursive;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 290px;
+        width: 270px;
+        z-index: 1;
+        left: 50%;
+        top: 90px;
+        margin-top: -1%; 
+        margin-left: -150px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.74);
+        margin-top: 20px;
+    }
+    &__links button {
+        font-family: 'Sigmar One', cursive;
+        position: relative;
+        z-index: 1;
+        height: 60px;
+        width: 180px;
+        margin: 10px;
+        background: #14080E;
+        color: white;
+        border-radius: 12px;
+        font-size: 17px;
+    }
+    &__links h1 {
+        font-size: 40px;
+    }
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    top: -220px;
+    z-index: 0;
+    width: 1000px; 
+    height: 1000px;
+}

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
+import IndividualArticle from './IndividualArticle';
 import axios from 'axios';
 
 class SingleArticle extends Component{
@@ -47,22 +49,35 @@ class SingleArticle extends Component{
             'maxWidth': '200px',
             'maxHeight': '200px'
         }
+        const {user} = this.props;
         const article = this.state.article.map(article => {
             return <div>
-                <h1>{article.title}</h1>
-                <img src={article.image} style={style}/>
-                <p>{article.content}</p>
+                <IndividualArticle article={article}/>
+                {
+                    user && user.user_id === article.user_id ?
+                    <div>
+                        Title: <input name='title' onChange={(e) => this.handleInputs(e)}/>
+                        Photo: <input name='photo' onChange={(e) => this.handleInputs(e)}/>
+                        Content: <input name='content' onChange={(e) => this.handleInputs(e)}/>
+                        <button onClick={() => this.updateArticle()}>Submit</button>
+                        <button style={{background: 'red'}} onClick={() => this.deleteArticle()}>Delete Article</button>
+                    </div>
+                    :
+                    <></>
+                }
             </div>
         })
         return <div>
             {article}
-            Title: <input name='title' onChange={(e) => this.handleInputs(e)}/>
-            Photo: <input name='photo' onChange={(e) => this.handleInputs(e)}/>
-            Content: <input name='content' onChange={(e) => this.handleInputs(e)}/>
-            <button onClick={() => this.updateArticle()}>Submit</button>
-            <button style={{background: 'red'}} onClick={() => this.deleteArticle()}>Delete Article</button>
+            
         </div>
     }
 }
 
-export default SingleArticle;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(SingleArticle);

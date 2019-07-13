@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { updateUser } from '../../ducks/reducer';
 import axios from 'axios';
+import './Register.scss';
 
 class Register extends Component {
     constructor(){
@@ -38,19 +39,48 @@ class Register extends Component {
 
     render(){
         return (
-            <div>
-                <h1>Register</h1>
-                Email: <input name="email" onChange={(e) => this.handleInputs(e)}/> <br />
-                Username: <input name="username" onChange={(e) => this.handleInputs(e)}/> <br />
-                <select onChange={(e) => this.setState({role: e.target.value})}>
-                    <option selected disabled>Choose Role</option>
-                    <option value="reader">Reader</option>
-                    <option value="editor">Author</option>
-                </select> <br />
-                Password: <input type="password" name="password" onChange={(e) => this.handleInputs(e)}/><br />
-                Re Enter Password: <input type="password"  name="verify" onChange={(e) => this.handleInputs(e)}/><br />
-                <hr />
-                <button onClick={this.register}>Sign Up!</button>
+            <div className='register'>
+                <div>
+                    <h1>
+                        Register
+                    </h1>
+                </div>
+                <div>
+                    <h3>
+                        Email:
+                    </h3>
+                    <input name="email" onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <h3>
+                        Username:
+                    </h3>
+                    <input name="username" onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <select onChange={(e) => this.setState({role: e.target.value})}>
+                        <option selected disabled>Choose Role</option>
+                        <option value="reader">Reader</option>
+                        <option value="editor">Author</option>
+                    </select>
+                </div>
+                <div>
+                    <h3>
+                        Password:
+                    </h3>
+                    <input type="password" name="password" onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <h3>
+                        Re Enter Password:
+                    </h3>
+                    <input type="password"  name="verify" onChange={(e) => this.handleInputs(e)}/>
+                </div>
+                <div>
+                    <button onClick={this.register}>
+                        Sign Up!
+                    </button>
+                </div>
             </div>
         )
     }

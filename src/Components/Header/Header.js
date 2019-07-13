@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { updateUser } from '../../ducks/reducer';
 import axios from 'axios';
+import './Header.scss';
 
 class Header extends Component {
     componentDidMount(){
@@ -16,10 +17,28 @@ class Header extends Component {
         })
     }
     render(){
+        const {user} = this.props;
         return (
             <div>
-                <Link to='/'><button>Home</button></Link>
-                <Link to='/create'><button>Create Article</button></Link>
+                {
+                    user && user.role === 'editor' ?
+                    <div className='header'>
+                        <Link to='/'><button>Home</button></Link>
+                        <h1>Article City</h1>
+                        <Link to='/create'><button>Create Article</button></Link>
+                    </div>
+                    :
+                    // ? user &&
+                    <div className='header'>
+                        <Link to='/browse'><button>Browse</button></Link>
+                        <h1>Aricle City</h1>
+                        <Link to='/'><button>Login/Register</button></Link>
+                    </div>
+                    // :
+                    // <></>
+                    // :
+                    // <></>
+                }
             </div>
         )
     }

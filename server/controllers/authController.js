@@ -7,12 +7,12 @@ module.exports = {
         let db = new sqlite3.Database("./database.sqlite3")
         const { username, email, password, role } = req.body;
         bcrypt.hash(password, saltRounds).then(hash => {
-            db.run('INSERT INTO users (username, email, password, role) values (?,?,?,?)',[username, email, hash, role], (err, item) => {
+            db.run('INSERT INTO users (username, email, password, role) values (?,?,?,?)',[username, email, hash, role], function(err){
                 if(err){
                     console.log(err)
                     res.status(500).json({message: "An error occured during sign up"})
                 } else {
-                    req.session.user = { username, email, role, user_id };
+                    req.session.user = { username, email, role, user_id: this.lastID };
                     res.send({ user: req.session.user })
                 }
             })

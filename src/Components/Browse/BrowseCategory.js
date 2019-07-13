@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Article from './Article';
+import { connect } from 'react-redux'
 import axios from 'axios';
 
 class BrowseCategory extends Component {
@@ -23,19 +24,34 @@ class BrowseCategory extends Component {
 
     render(){
         const { articles } = this.state;
+        const { user } = this.props;
         const mappedArticles = articles.map(article => {
             return <Article article={article}/>
         })
         return (
             <div>
-                {
-                    articles[0] &&
-                    <h1>{articles[0].category}</h1>
+                { user ?
+                <div>
+                    {
+                        articles[0] &&
+                        <h1>{articles[0].category}</h1>
+                    }
+                    {mappedArticles}
+                </div>
+                :
+                <div>
+                    {this.props.history.push('/')}
+                </div>
                 }
-                {mappedArticles}
             </div>
         )
     }
 }
 
-export default BrowseCategory;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(BrowseCategory);

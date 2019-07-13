@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios';
+import './CreateArticle.scss';
 
 class CreateArticle extends Component {
     constructor(){
@@ -34,7 +35,7 @@ class CreateArticle extends Component {
             maxWidth: '200px'
         }
         return (
-            <div>
+            <div className='create'>
                 <div>
                     <h3>Title: </h3>    
                     <input name='title' onChange={(e) => this.handleInputs(e)}/>
@@ -54,7 +55,7 @@ class CreateArticle extends Component {
                 </div>
                 <div>
                     <h3>Content: </h3>    
-                    <textarea cols={50} rows={15} name='content' onChange={(e) => this.handleInputs(e)}/>
+                    <textarea cols={30} rows={15} name='content' onChange={(e) => this.handleInputs(e)}/>
                 </div>
                 <div>
                     <h1>Preview:</h1>    
